@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
@@ -46,6 +47,7 @@ function App() {
           <Toaster />
           <EasterEggs />
           <ElasticCursor />
+          <Analytics />
         </Preloader>
       </ThemeProvider>
     </BrowserRouter>

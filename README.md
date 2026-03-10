@@ -1,10 +1,13 @@
-# 🚀 My Portfolio Website
+# 🚀My Portfolio Website
 
 Welcome to the repository for my personal portfolio website! This is where I showcase my skills, projects, and a bit of my personality through jaw-dropping 3D animations, slick interactions, and fluid motion. If you're into creative web design, you're in the right place.
 
-![Portfolio Preview](https://github.com/Raahil-08/My_Portfolio/blob/67cd18c3f42bed05abbae047ec0e5fd703e91d21/public/assets/projects-screenshots/portfolio/landing.png)
+![Portfolio Preview](public/assets/projects-screenshots/portfolio/landing.png)
 
-## 🔥 Features
+## Check it out at
+[text](https://vercel.com/raahildesai8-gmailcoms-projects/raahil-portfolio)
+
+## Features
 
 - **3D Animations**: Custom-made interactive keyboard using Spline with skills as keycaps that reveal titles and descriptions on hover.
 - **Slick Interactions**: Powered by GSAP and Framer Motion for smooth animations on scroll, hover, and element reveal.
@@ -12,13 +15,13 @@ Welcome to the repository for my personal portfolio website! This is where I sho
 - **Responsive Design**: Fully responsive across all devices to ensure the best user experience.
 - **Innovative Web Design**: Combining creativity with functionality to push the boundaries of modern web design.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: Next.js, React, Tailwind CSS, Shadcn, Aceternity UI
 - **Animations**: GSAP, Framer Motion, Spline Runtime
 - **Misc**: Resend, Socketio, Zod
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -29,31 +32,31 @@ Welcome to the repository for my personal portfolio website! This is where I sho
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/Raahil-08/Portfolio.git
-    ```
+   ```bash
+   git clone https://github.com/Raahil-08/Portfolio.git
+   ```
 
 2. Navigate to the project directory:
 
-    ```bash
-    cd Portfolio
-    ```
+   ```bash
+   cd Portfolio
+   ```
 
 3. Install dependencies:
 
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
 4. Run the development server:
 
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the magic!
 
@@ -64,4 +67,3 @@ This site is deployed on Vercel. For your own deployment, follow these steps:
 1. Push your code to a GitHub repository.
 2. Connect your repository to Vercel.
 3. Vercel will handle the deployment process.
-
