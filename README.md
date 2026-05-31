@@ -5,7 +5,7 @@ Welcome to the repository for my personal portfolio website! This is where I sho
 ![Portfolio Preview](public/assets/projects-screenshots/portfolio/landing.png)
 
 ## Check it out at
-[text](https://vercel.com/raahildesai8-gmailcoms-projects/raahil-portfolio)
+[Portfolio](https://raahildesai.vercel.app/#)
 
 ## Features
 
