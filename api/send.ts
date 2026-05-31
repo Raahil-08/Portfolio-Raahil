@@ -1,5 +1,6 @@
-import { EmailTemplate } from "@/components/email-template";
-import { config } from "@/data/config";
+import React from "react";
+import { EmailTemplate } from "../src/components/email-template";
+import { config } from "../src/data/config";
 import { Resend } from "resend";
 import { z } from "zod";
 
@@ -10,23 +11,31 @@ const Email = z.object({
   email: z.string().email({ message: "Email is invalid!" }),
   message: z.string().min(10, "Message is too short!"),
 });
-export async function POST(req: Request) {
+
+export default async function handler(req: any, res: any) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
+
   try {
-    const body = await req.json();
-    console.log(body);
+    const body = req.body;
+    console.log("Contact form payload:", body);
+    
     const {
       success: zodSuccess,
       data: zodData,
       error: zodError,
     } = Email.safeParse(body);
-    if (!zodSuccess)
-      return Response.json({ error: zodError?.message }, { status: 400 });
+    
+    if (!zodSuccess) {
+      return res.status(400).json({ error: zodError?.message });
+    }
 
     const { data: resendData, error: resendError } = await resend.emails.send({
-      from: "Porfolio <onboarding@resend.dev>",
+      from: "Portfolio <onboarding@resend.dev>",
       to: [config.email],
       subject: "Contact me from portfolio",
-      react: EmailTemplate({
+      react: React.createElement(EmailTemplate as React.FC<any>, {
         fullName: zodData.fullName,
         email: zodData.email,
         message: zodData.message,
@@ -34,11 +43,12 @@ export async function POST(req: Request) {
     });
 
     if (resendError) {
-      return Response.json({ resendError }, { status: 500 });
+      return res.status(500).json({ resendError });
     }
 
-    return Response.json(resendData);
+    return res.status(200).json(resendData);
   } catch (error) {
-    return Response.json({ error }, { status: 500 });
+    console.error(error);
+    return res.status(500).json({ error });
   }
 }
