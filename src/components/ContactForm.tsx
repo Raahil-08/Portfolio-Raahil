@@ -48,12 +48,14 @@ const ContactForm = () => {
         navigate("/");
         clearTimeout(timer);
       }, 1000);
-    } catch (err) {
+    } catch (err: any) {
+      console.error("Form submission error:", err);
       toast({
         title: "Error",
-        description: "Something went wrong! Please check the fields.",
+        description:
+          err?.message || "Something went wrong! Please check the fields.",
         className: cn(
-          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
+          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4",
         ),
         variant: "destructive",
       });
