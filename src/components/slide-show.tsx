@@ -40,11 +40,22 @@ const SlideShow = ({ images }: { images: string[] }) => {
                 onMouseEnter={() => setHovering(true)}
                 onMouseLeave={() => setHovering(false)}
               >
-                <img
-                  src={image}
-                  alt="screenshot"
-                  className="w-full rounded-lg h-auto"
-                />
+                {image.match(/\.(mp4|mov|webm)$/i) ? (
+                  <video
+                    src={image}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full rounded-lg h-auto object-cover"
+                  />
+                ) : (
+                  <img
+                    src={image}
+                    alt="screenshot"
+                    className="w-full rounded-lg h-auto"
+                  />
+                )}
                 <AnimatePresence>
                   {hovering && (
                     <motion.div
@@ -60,17 +71,27 @@ const SlideShow = ({ images }: { images: string[] }) => {
               </DialogTrigger>
               <DialogContent className="min-w-[90vw] h-[90vh] bg-transparent outline-none border-none p-0 m-0">
                 <DialogHeader className="w-full">
-                  {/* <DialogTitle>Are you absolutely sure?</DialogTitle> */}
                   <DialogDescription>
                     {image.split("/").pop()}
                   </DialogDescription>
                 </DialogHeader>
-                <img
-                  src={image}
-                  alt="screenshot"
-                  className="w-full"
-                  style={{ objectFit: "contain", width: "100vw" }}
-                />
+                {image.match(/\.(mp4|mov|webm)$/i) ? (
+                  <video
+                    src={image}
+                    controls
+                    autoPlay
+                    loop
+                    className="w-full h-full"
+                    style={{ objectFit: "contain" }}
+                  />
+                ) : (
+                  <img
+                    src={image}
+                    alt="screenshot"
+                    className="w-full h-full"
+                    style={{ objectFit: "contain" }}
+                  />
+                )}
               </DialogContent>
             </Dialog>
           </SplideSlide>

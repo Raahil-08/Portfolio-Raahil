@@ -46,7 +46,7 @@ const STATES = {
   },
   skills: {
     desktop: {
-      scale: { x: 0.4, y: 0.4, z: 0.4 },
+      scale: { x: 0.35, y: 0.35, z: 0.35 },
       position: { x: 0, y: -40, z: 0 },
       rotation: {
         x: 0,
@@ -55,7 +55,7 @@ const STATES = {
       },
     },
     mobile: {
-      scale: { x: 0.2, y: 0.2, z: 0.2 },
+      scale: { x: 0.15, y: 0.15, z: 0.15 },
       position: { x: 0, y: -40, z: 0 },
       rotation: {
         x: 0,

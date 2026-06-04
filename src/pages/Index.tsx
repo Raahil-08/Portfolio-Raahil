@@ -6,6 +6,7 @@ import SkillsSection from "@/components/sections/skills";
 import ProjectsSection from "@/components/sections/projects";
 import ContactSection from "@/components/sections/contact";
 import HeroSection from "@/components/sections/hero";
+import SideQuestsSection from "@/components/sections/side-quests";
 
 function Index() {
   return (
@@ -18,6 +19,7 @@ function Index() {
           <HeroSection />
           <SkillsSection />
           <ProjectsSection />
+          <SideQuestsSection />
           <ContactSection />
         </main>
       </SmoothScroll>
