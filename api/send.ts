@@ -1,6 +1,4 @@
-
 import { config } from "../src/data/config";
-import { Resend } from "resend";
 import { z } from "zod";
 
 const Email = z.object({
@@ -15,42 +13,48 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    if (!process.env.RESEND_API_KEY) {
-      return res.status(500).json({ error: "Server Configuration Error: Missing RESEND_API_KEY environment variable in Vercel. Did you add it to the Production environment?" });
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: "Server Configuration Error: Missing RESEND_API_KEY environment variable in Vercel." });
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = req.body;
     console.log("Contact form payload:", body);
     
-    const {
-      success: zodSuccess,
-      data: zodData,
-      error: zodError,
-    } = Email.safeParse(body);
+    const { success, data, error } = Email.safeParse(body);
     
-    if (!zodSuccess) {
-      return res.status(400).json({ error: zodError?.message });
+    if (!success) {
+      return res.status(400).json({ error: error?.message });
     }
 
-    const { data: resendData, error: resendError } = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
-      to: [config.email],
-      subject: "Contact me from portfolio",
-      html: `<div>
-        <h1>from: ${zodData.fullName}!</h1>
-        <div style="color: red;">${zodData.email} sent you a message</div>
-        <blockquote>${zodData.message}</blockquote>
-      </div>`,
+    const resendRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Portfolio <onboarding@resend.dev>",
+        to: [config.email],
+        subject: "Contact me from portfolio",
+        html: `<div>
+          <h1>from: ${data.fullName}!</h1>
+          <div style="color: red;">${data.email} sent you a message</div>
+          <blockquote>${data.message}</blockquote>
+        </div>`
+      })
     });
 
-    if (resendError) {
-      return res.status(500).json({ error: resendError.message || "Failed to send email via Resend" });
+    const resendData = await resendRes.json();
+
+    if (!resendRes.ok) {
+      return res.status(resendRes.status).json({ error: resendData?.message || "Failed to send email via Resend" });
     }
 
     return res.status(200).json(resendData);
-  } catch (error: any) {
-    console.error("API Send Error:", error);
-    return res.status(500).json({ error: error.message || "Internal Server Error" });
+  } catch (err: any) {
+    console.error("API Send Error:", err);
+    return res.status(500).json({ error: err.message || "Internal Server Error" });
   }
 }
+
