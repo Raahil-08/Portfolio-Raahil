@@ -1,4 +1,3 @@
-import { config } from "../src/data/config";
 import { z } from "zod";
 
 const Email = z.object({
@@ -35,7 +34,7 @@ export default async function handler(req: any, res: any) {
       },
       body: JSON.stringify({
         from: "Portfolio <onboarding@resend.dev>",
-        to: [config.email],
+        to: ["raahildesai8@gmail.com"],
         subject: "Contact me from portfolio",
         html: `<div>
           <h1>from: ${data.fullName}!</h1>
