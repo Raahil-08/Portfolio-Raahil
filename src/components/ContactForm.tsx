@@ -32,7 +32,15 @@ const ContactForm = () => {
           message,
         }),
       });
-      const data = await res.json();
+      const contentType = res.headers.get("content-type");
+      let data: any;
+      if (contentType && contentType.includes("application/json")) {
+        data = await res.json();
+      } else {
+        const textError = await res.text();
+        throw new Error(`Server returned an invalid response: ${res.statusText}. Please check environment variables or server logs.`);
+      }
+
       if (data.error) throw new Error(data.error);
       toast({
         title: "Thank you!",
