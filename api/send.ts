@@ -1,5 +1,4 @@
-import React from "react";
-import { EmailTemplate } from "../src/components/email-template";
+
 import { config } from "../src/data/config";
 import { Resend } from "resend";
 import { z } from "zod";
@@ -38,11 +37,11 @@ export default async function handler(req: any, res: any) {
       from: "Portfolio <onboarding@resend.dev>",
       to: [config.email],
       subject: "Contact me from portfolio",
-      react: React.createElement(EmailTemplate as React.FC<any>, {
-        fullName: zodData.fullName,
-        email: zodData.email,
-        message: zodData.message,
-      }),
+      html: `<div>
+        <h1>from: ${zodData.fullName}!</h1>
+        <div style="color: red;">${zodData.email} sent you a message</div>
+        <blockquote>${zodData.message}</blockquote>
+      </div>`,
     });
 
     if (resendError) {
