@@ -4,8 +4,6 @@ import { config } from "../src/data/config";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const Email = z.object({
   fullName: z.string().min(2, "Full name is invalid!"),
   email: z.string().email({ message: "Email is invalid!" }),
@@ -18,6 +16,11 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
+    if (!process.env.RESEND_API_KEY) {
+      return res.status(500).json({ error: "Server Configuration Error: Missing RESEND_API_KEY environment variable in Vercel. Did you add it to the Production environment?" });
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = req.body;
     console.log("Contact form payload:", body);
     
@@ -43,12 +46,12 @@ export default async function handler(req: any, res: any) {
     });
 
     if (resendError) {
-      return res.status(500).json({ resendError });
+      return res.status(500).json({ error: resendError.message || "Failed to send email via Resend" });
     }
 
     return res.status(200).json(resendData);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error });
+  } catch (error: any) {
+    console.error("API Send Error:", error);
+    return res.status(500).json({ error: error.message || "Internal Server Error" });
   }
 }
