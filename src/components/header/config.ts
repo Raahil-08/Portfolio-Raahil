@@ -26,15 +26,11 @@ const links: Link[] = [
   //   href: '/skills',
   //   thumbnail: '/assets/nav-link-previews/skills.png'
   // },
-  // {
-  //   title: 'Testimonials',
-  //   href: '/testimonials',
-  //   thumbnail: '/assets/nav-link-previews/testimonials.png'
-  // },
+
   {
-    title: 'Blogs',
-    href: '/blogs',
-    thumbnail: '/assets/nav-link-previews/blog.png',
+    title: 'Side Quests',
+    href: '/#side-quests',
+    thumbnail: '/assets/nav-link-previews/side-quests.png',
   },
   {
     title: 'Contact',
