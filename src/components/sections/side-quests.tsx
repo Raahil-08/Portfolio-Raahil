@@ -14,7 +14,7 @@ import { ArrowUpRight } from "lucide-react";
 import SlideShow from "@/components/slide-show";
 
 import { RiNextjsFill, RiReactjsFill } from "react-icons/ri";
-import { SiVite, SiSupabase, SiPostgresql } from "react-icons/si";
+import { SiVite, SiSupabase, SiPostgresql, SiTypescript, SiTailwindcss, SiFramer, SiGreensock, SiThreedotjs, SiResend } from "react-icons/si";
 
 interface Skill {
   title: string;
@@ -39,6 +39,48 @@ interface SideQuest {
 }
 
 const sideQuests: SideQuest[] = [
+  {
+    title: "Dr. Physio Clinic",
+    category: "Healthcare Platform",
+    src: "/assets/side-quests-screenshots/Dr Physio/hero.png",
+    description:
+      "I architected a comprehensive digital ecosystem for a premier physiotherapy clinic. The solution pairs a visually striking, highly interactive public-facing website designed to drive patient bookings, with a secure, bespoke management dashboard for clinic staff.",
+    link: "https://www.drphysioclinic.com",
+    bullets: [
+      {
+        text: "Engineered a lightning-quick, highly optimized landing page leveraging Next.js and Tailwind CSS. The architecture was meticulously designed to maximize user engagement, accessibility, and search engine visibility.",
+        images: ["/assets/side-quests-screenshots/Dr Physio/website.mov"],
+      },
+      {
+        text: "Integrated fluid, physics-based interactions and seamless scroll effects using Framer Motion to deliver a truly luxurious browsing experience.",
+        images: ["/assets/side-quests-screenshots/Dr Physio/hero.png",
+          "/assets/side-quests-screenshots/Dr Physio/contact.png",
+          "/assets/side-quests-screenshots/Dr Physio/testimonials.png",
+          "/assets/side-quests-screenshots/Dr Physio/Footer.png"
+        ],
+      },
+      {
+        text: "Developed a fully tailored content management interface from the ground up. This empowers the administrative team to intuitively oversee practitioners, clinical services, and incoming inquiries without the bloat of off-the-shelf CMS solutions.",
+        images: ["/assets/side-quests-screenshots/Dr Physio/admin.mov"],
+      },
+    ],
+    skills: {
+      frontend: [
+        { title: "Next.js", bg: "black", fg: "white", icon: <RiNextjsFill /> },
+        { title: "React", bg: "black", fg: "white", icon: <RiReactjsFill /> },
+        { title: "TypeScript", bg: "black", fg: "white", icon: <SiTypescript /> },
+        { title: "Tailwind CSS", bg: "black", fg: "white", icon: <SiTailwindcss /> },
+        { title: "Framer Motion", bg: "black", fg: "white", icon: <SiFramer /> },
+        { title: "GSAP", bg: "black", fg: "white", icon: <SiGreensock /> },
+        { title: "Three.js", bg: "black", fg: "white", icon: <SiThreedotjs /> },
+      ],
+      backend: [
+        { title: "Supabase", bg: "black", fg: "white", icon: <SiSupabase /> },
+        { title: "PostgreSQL", bg: "black", fg: "white", icon: <SiPostgresql /> },
+        { title: "Resend", bg: "black", fg: "white", icon: <SiResend /> },
+      ],
+    },
+  },
   {
     title: "www.prithvix.in",
     category: "Agritech Platform",
