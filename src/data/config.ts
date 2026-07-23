@@ -32,8 +32,8 @@ const config = {
   },
   social: {
     linkedin: "https://www.linkedin.com/in/raahil-m-desai/",
-    instagram: "https://www.instagram.com/hotchaddi",
-    facebook: "https://www.facebook.com/HotChaddi/",
+    instagram: "https://www.instagram.com/raahil_86",
+    facebook: "",
     github: "https://github.com/Raahil-08",
   },
 };
